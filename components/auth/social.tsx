@@ -9,10 +9,10 @@ export const Social = () => {
     return (
         <div className="w-full flex items-center gap-x-2">
             <Button size="lg" className="flex-1 cursor-pointer" variant="outline" onClick={() => {}}>
-                <FcGoogle className="h-5 w-5" />
+                <FcGoogle className="w-5 h-5" />
             </Button>
             <Button size="lg" className="flex-1 cursor-pointer" variant="outline" onClick={() => {}}>
-                <FaGithub className="h-5 w-5" />
+                <FaGithub className="w-5 h-5" />
             </Button>
         </div>
     )
