@@ -8,7 +8,7 @@ interface LoginButtonProps {
     asChild?: boolean;
 }
 
-export function LoginButton({ children, mode = "modal", asChild = false }: LoginButtonProps) {
+export function LoginButton({ children, mode = "redirect", asChild = false }: LoginButtonProps) {
     const router = useRouter();
 
     const onClick = () => {
