@@ -6,7 +6,8 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+  // uncomment next line if you want custom output path
+  // output   = "../lib/generated/prisma"
 }
 
 // prisma/schema.prisma
