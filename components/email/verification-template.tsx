@@ -6,19 +6,18 @@ import {
   Head,
   Heading,
   Html,
-  Img,
   Link,
   Preview,
   Section,
   Text,
 } from '@react-email/components';
 
-interface EmailTemplateProps {
+interface VerificationTemplateProps {
   firstName: string;
   verificationLink: string;
 }
 
-export function EmailTemplate({ firstName, verificationLink }: EmailTemplateProps) {
+export function VerificationTemplate({ firstName, verificationLink }: VerificationTemplateProps) {
   return (
     <Html>
       <Head />

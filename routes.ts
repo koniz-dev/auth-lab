@@ -21,6 +21,7 @@ export const protectedRoutes = [
     "/auth/login",
     "/auth/register",
     "/auth/error",
+    "/auth/reset",
 ]
 
 /**
