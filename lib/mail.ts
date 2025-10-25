@@ -5,6 +5,15 @@ import { getUserByEmail } from "@/data/user";
 
 export const resend = new Resend(process.env.RESEND_API_KEY);
 
+export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Two Factor Authentication Token",
+        html: `<p>Your two factor authentication code is <strong>${token}</strong></p>`,
+    });
+}
+
 export const sendVerificationEmail = async (email: string, token: string) => {
     const confirmLink = `http://localhost:3000/auth/new-verification?token=${token}`;
     
