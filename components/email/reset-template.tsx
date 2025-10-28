@@ -49,7 +49,7 @@ export function ResetTemplate({ firstName, resetLink }: ResetTemplateProps) {
             </Section>
 
             <Text style={text}>
-              If the button above doesn't work, you can copy and paste the following link into your browser:
+              If the button above doesn&apos;t work, you can copy and paste the following link into your browser:
             </Text>
             
             <Text style={linkText}>
@@ -59,7 +59,7 @@ export function ResetTemplate({ firstName, resetLink }: ResetTemplateProps) {
             </Text>
 
             <Text style={text}>
-              This link will expire in 1 hour for security reasons. If you didn't request this password reset, 
+              This link will expire in 1 hour for security reasons. If you didn&apos;t request this password reset, 
               please ignore this email and your password will remain unchanged.
             </Text>
             

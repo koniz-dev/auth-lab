@@ -45,7 +45,7 @@ export function VerificationTemplate({ firstName, verificationLink }: Verificati
             </Section>
 
             <Text style={text}>
-              If the button above doesn't work, you can copy and paste the following link into your browser:
+              If the button above doesn&apos;t work, you can copy and paste the following link into your browser:
             </Text>
             
             <Text style={linkText}>
@@ -55,7 +55,7 @@ export function VerificationTemplate({ firstName, verificationLink }: Verificati
             </Text>
 
             <Text style={text}>
-              This link will expire in 24 hours. If you didn't request this account creation, 
+              This link will expire in 24 hours. If you didn&apos;t request this account creation, 
               please ignore this email.
             </Text>
           </Section>
