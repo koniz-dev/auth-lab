@@ -6,6 +6,7 @@ declare module "next-auth" {
     user: {
       id: string
       role: UserRole
+      isTwoFactorEnabled: boolean
     } & DefaultSession["user"]
   }
 }
@@ -14,4 +15,9 @@ declare module "next-auth/jwt" {
   interface JWT {
     role?: UserRole
   }
+}
+
+export type ExtendedUser = DefaultSession["user"] & {
+  role: UserRole
+  isTwoFactorEnabled: boolean
 }
