@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { LoginForm } from "@/components/auth/login-form";
 
 interface LoginButtonProps {
@@ -24,6 +25,9 @@ export function LoginButton({ children, mode = "redirect", asChild = false }: Lo
                     {children}
                 </DialogTrigger>
                 <DialogContent className="p-0 w-auto bg-transparent border-none">
+                    <VisuallyHidden>
+                        <DialogTitle>Sign in</DialogTitle>
+                    </VisuallyHidden>
                     <LoginForm />    
                 </DialogContent>
             </Dialog>

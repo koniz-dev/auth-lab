@@ -1,27 +1,26 @@
-import NextAuth from "next-auth"
-
-import authConfig from "@/auth.config"
+import { NextRequest, NextResponse } from "next/server"
 import { publicRoutes, protectedRoutes, apiAuthPrefix, DEFAULT_LOGIN_REDIRECT } from "@/routes"
 
-const { auth } = NextAuth(authConfig)
-export default auth(async function middleware(req) {
+export default function middleware(req: NextRequest) {
     const { nextUrl } = req
-    const isLoggedIn = !!req.auth;
+    
+    // Get token from cookies instead of using NextAuth middleware
+    const token = req.cookies.get("authjs.session-token") || req.cookies.get("__Secure-authjs.session-token")
+    const isLoggedIn = !!token?.value
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
 
     if (isApiAuthRoute) {
-        return null;
+        return NextResponse.next();
     }
 
     if (isProtectedRoute) {
         if (isLoggedIn) {
-            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
-
-        return null;
+        return NextResponse.next();
     }
 
     if (!isLoggedIn && !isPublicRoute) {
@@ -30,11 +29,11 @@ export default auth(async function middleware(req) {
             callbackUrl += nextUrl.search;
         }
         const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-        return Response.redirect(new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl));
+        return NextResponse.redirect(new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl));
     }
 
-    return null;
-})
+    return NextResponse.next();
+}
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {
