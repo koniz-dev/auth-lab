@@ -5,6 +5,8 @@ import { getUserByEmail } from "@/data/user";
 
 export const resend = new Resend(process.env.RESEND_API_KEY);
 
+const domain = process.env.NODE_ENV === "development" ? "http://localhost:3000" : process.env.NEXT_PUBLIC_APP_URL;
+
 export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
     await resend.emails.send({
         from: "onboarding@resend.dev",
@@ -15,7 +17,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
 }
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-    const confirmLink = `http://localhost:3000/auth/new-verification?token=${token}`;
+    const confirmLink = `${domain}/auth/new-verification?token=${token}`;
     
     const user = await getUserByEmail(email);
     const displayName = user?.name || email.split('@')[0];
@@ -29,7 +31,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 }
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-    const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
+    const resetLink = `${domain}/auth/new-password?token=${token}`;
     
     const user = await getUserByEmail(email);
     const displayName = user?.name || email.split('@')[0];
